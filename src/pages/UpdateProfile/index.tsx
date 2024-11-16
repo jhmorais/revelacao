@@ -140,7 +140,7 @@ export function UpdateProfile(props: { disableCustomTheme?: boolean }) {
               />
             </FormControl>
             <FormControl>
-              <FormLabel id="radio-buttons-vinculo">Vinculo</FormLabel>
+              <FormLabel id="radio-buttons-vinculo">Vínculo</FormLabel>
               <RadioGroup
                 row
                 aria-labelledby="demo-radio-buttons-group-label"
