@@ -1,0 +1,95 @@
+body {
+  display: flex; /* Ativa flexbox no body */
+  justify-content: center; /* Alinha horizontalmente ao centro */
+  align-items: center; /* Alinha verticalmente ao centro */
+  height: 100vh; /* Garante que o body ocupe toda a altura da tela */
+  margin: 0; /* Remove a margem padrão do body */
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  justify-content: center; /* Centraliza conteúdo horizontalmente */
+  align-items: center; /* Centraliza conteúdo verticalmente */
+}
+
+.vote-container {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 30%;
+  height: 40vh;
+  justify-content: center; /* Alinha as opções ao centro */
+  align-items: center;
+  gap: 20px; /* Espaço entre as imagens */
+  margin-top: 20px;
+  border-radius: 10px; /* Borda arredondada, opcional */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.options {
+  display: flex; /* Alinha as opções de imagem lado a lado */
+  gap: 20px; /* Espaço entre as imagens */
+  justify-content: center;
+}
+
+.sent-vote{
+  display: flex;
+  margin-top: 50px;
+  justify-content: center;
+}
+
+.sent-button{
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  width: 80%;
+  cursor: pointer;
+}
+
+.sent-button:disabled {
+  background-color: #ccc; /* Cor de fundo quando desativado */
+  color: #666; /* Cor do texto quando desativado */
+  cursor: not-allowed;
+}
+
+.sent-button:not(:disabled):hover {
+  background-color: #0056b3; /* Cor mais escura quando o mouse está sobre o botão */
+}
+
+.radio-image {
+  position: relative;
+  cursor: pointer;
+  display: flex; /* Adicionado para centralizar o conteúdo dentro da label */
+  flex-direction: column; /* Faz o texto e a imagem ficarem empilhados */
+  align-items: center;
+}
+
+.radio-image input[type="radio"] {
+  display: none; /* Esconde o radio button */
+}
+
+.radio-image img {
+  width: 100px;
+  height: 100px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 50%;
+  border: 2px solid transparent;
+}
+
+.radio-image input[type="radio"]:checked + img {
+  transform: scale(1.1); /* Aumenta um pouco a imagem ao ser selecionada */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-color: #007BFF; /* Cor de destaque ao ser selecionado */
+}
+
+.selected-result {
+  display: flex;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.2em;
+  font-family: Arial, sans-serif;
+  justify-content: center;
+}

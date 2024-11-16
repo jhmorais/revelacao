@@ -1,0 +1,38 @@
+{
+  "name": "googleauth",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
+    "@fontsource/roboto": "^5.1.0",
+    "@mui/icons-material": "^6.1.7",
+    "@mui/material": "latest",
+    "chart.js": "^4.4.6",
+    "firebase": "^9.9.1",
+    "phosphor-react": "^1.4.1",
+    "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.2.0",
+    "react-notifications-component": "^4.0.1",
+    "react-query": "^3.39.3",
+    "react-router-dom": "^6.26.2",
+    "sass": "^1.54.0",
+    "styled-components": "^6.1.13",
+    "sweetalert2": "^11.6.13",
+    "sweetalert2-react-content": "^5.0.7"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.0.0",
+    "typescript": "^5.6.3",
+    "vite": "^3.0.0"
+  }
+}
