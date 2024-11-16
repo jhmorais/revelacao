@@ -136,7 +136,7 @@ export function UpdateProfile(props: { disableCustomTheme?: boolean }) {
                 variant="outlined"
                 color={nomeError ? 'error' : 'primary'}
                 sx={{ ariaLabel: 'email' }}
-                value={userHistory?.displayName ?? ''}
+                value={userHistory?.name ?? ''}
               />
             </FormControl>
             <FormControl>
