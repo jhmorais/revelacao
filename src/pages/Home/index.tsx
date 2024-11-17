@@ -7,13 +7,19 @@ import { useQuery } from "react-query";
 import { useEffect, useState } from 'react';
 import { BOY } from '../../utils/const';
 import { Typography } from '@mui/material';
+import ScreenLoader from '../../components/screenLoader';
 
 export function Home() {
     const navigate = useNavigate();
     const [boyPercentage, setBoyPercentege] = useState<number>(50)
     const [girlPercentage, setGirlPercentege] = useState<number>(50)
-    const { data: votes, isLoading, error } = useQuery('getVotes', () => getVoteData())
     const [timeLeft, setTimeLeft] = useState(() => calculateTimeLeft());
+    
+    const { data: votes, isLoading, error } = useQuery('getVotes', () => getVoteData(), {
+        refetchInterval: 5000, // Refetch a cada 5 segundos
+        refetchOnWindowFocus: true, // Refetch ao focar na aba
+        staleTime: 0, // Marca os dados como "não frescos" imediatamente
+      })
 
     useEffect(() => {
         const girls: VoteData[] = []
@@ -93,6 +99,7 @@ export function Home() {
                     {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
                 </Typography>
             </div>
+            <ScreenLoader open={isLoading} message="Carregando dados, por favor, aguarde..." />
         </div>
     );
 }
