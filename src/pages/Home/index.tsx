@@ -11,8 +11,8 @@ import ScreenLoader from '../../components/screenLoader';
 
 export function Home() {
     const navigate = useNavigate();
-    const [boyPercentage, setBoyPercentege] = useState<number>(50)
-    const [girlPercentage, setGirlPercentege] = useState<number>(50)
+    const [boyPercentage, setBoyPercentege] = useState<number>(40)
+    const [girlPercentage, setGirlPercentege] = useState<number>(60)
     const [timeLeft, setTimeLeft] = useState(() => calculateTimeLeft());
     
     const { data: votes, isLoading, error } = useQuery('getVotes', () => getVoteData(), {
