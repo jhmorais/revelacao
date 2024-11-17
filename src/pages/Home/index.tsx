@@ -14,29 +14,33 @@ export function Home() {
     const [boyPercentage, setBoyPercentege] = useState<number>(40)
     const [girlPercentage, setGirlPercentege] = useState<number>(60)
     const [timeLeft, setTimeLeft] = useState(() => calculateTimeLeft());
-    
-    const { data: votes, isLoading, error } = useQuery('getVotes', () => getVoteData(), {
+
+    const { data: votes, isLoading, error } = useQuery(
+        'getVotes',
+        () => getVoteData(), {
+        onSuccess: (data) => {
+            const girls: VoteData[] = []
+            const boys: VoteData[] = []
+            data?.forEach((vote: VoteData) => {
+                if (vote.gender === BOY) {
+                    boys.push(vote)
+                } else {
+                    girls.push(vote)
+                }
+            })
+            const total = (data && data.length > 0) ? data.length : 1
+            const bPercentage = Math.round(boys.length * 100 / total)
+            const gPercentage = Math.round(girls.length * 100 / total)
+            setBoyPercentege((bPercentage === 0 || isNaN(bPercentage)) ? 50 : bPercentage)
+            setGirlPercentege((gPercentage === 0 || isNaN(gPercentage)) ? 50 : gPercentage)
+        },
+        onError: (error) => {
+            console.error('Erro ao carregar os dados:', error)
+        },
         refetchInterval: 5000, // Refetch a cada 5 segundos
         refetchOnWindowFocus: true, // Refetch ao focar na aba
         staleTime: 0, // Marca os dados como "não frescos" imediatamente
-      })
-
-    useEffect(() => {
-        const girls: VoteData[] = []
-        const boys: VoteData[] = []
-        votes?.forEach((vote: VoteData) => {
-            if (vote.gender === BOY) {
-                boys.push(vote)
-            } else {
-                girls.push(vote)
-            }
-        })
-        const total = votes?.length ?? 1
-        const bPercentage = Math.round(boys.length * 100 / total)
-        const gPercentage = Math.round(girls.length * 100 / total)
-        setBoyPercentege((bPercentage === 0 || isNaN(bPercentage)) ? 50 : bPercentage)
-        setGirlPercentege((gPercentage === 0 || isNaN(gPercentage)) ? 50 : gPercentage)
-    }, [votes])
+    })
 
     async function vote() {
         navigate("/login")
@@ -95,7 +99,7 @@ export function Home() {
 
             <div className="center-button">
                 <button className='vote-button' onClick={vote}>Votar Agora</button>
-                <Typography variant="h3" id="cronometro" sx={{marginTop: '2rem', color: 'rgba(255, 255, 255, 0.8)', }}>
+                <Typography variant="h3" id="cronometro" sx={{ marginTop: '2rem', color: 'rgba(255, 255, 255, 0.8)', }}>
                     {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
                 </Typography>
             </div>
