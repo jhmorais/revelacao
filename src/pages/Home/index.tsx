@@ -31,10 +31,10 @@ export function Home() {
             const total = (data && data.length > 0) ? data.length : 1
             const bPercentage = Math.round(boys.length * 100 / total)
             const gPercentage = Math.round(girls.length * 100 / total)
-            // setBoyPercentege((bPercentage === 0 || isNaN(bPercentage)) ? 50 : bPercentage)
-            // setGirlPercentege((gPercentage === 0 || isNaN(gPercentage)) ? 50 : gPercentage)
-            setBoyPercentege(bPercentage)
-            setGirlPercentege(gPercentage)
+            setBoyPercentege((bPercentage === 0 || isNaN(bPercentage)) ? 50 : bPercentage)
+            setGirlPercentege((gPercentage === 0 || isNaN(gPercentage)) ? 50 : gPercentage)
+            // setBoyPercentege(bPercentage)
+            // setGirlPercentege(gPercentage)
         },
         onError: (error) => {
             console.error('Erro ao carregar os dados:', error)
