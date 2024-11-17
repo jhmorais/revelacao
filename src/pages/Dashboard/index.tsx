@@ -10,6 +10,10 @@ import pixNubank from '../../assets/pix-nubank.jpg';
 import qrcodeWise from '../../assets/qrcode-wise.jpg';
 import babyGirl from '../../assets/baby-girl.png';
 import babyBoy from '../../assets/baby.png';
+import pampersBR from '../../assets/fralda-pampers-brasil.jpg';
+import monicaBR from '../../assets/fralda-monica-brasil.jpg';
+import dodotPT from '../../assets/fralda-dodot-portugal.jpg';
+import liberoPT from '../../assets/fralda-libero-portugal.jpg';
 import { InfoRounded } from '@mui/icons-material';
 import { useEffect, useState } from 'react';
 import { getVoteData, VoteData } from '../../services/vote';
@@ -80,12 +84,12 @@ export function Dashboard(props: { disableCustomTheme?: boolean }) {
         },
     };
 
-    const handleCopy = async (textToCopy: string) => {
+    const handleCopy = async (textToCopy: string, text: string) => {
         try {
             await navigator.clipboard.writeText(textToCopy)
             Store.addNotification({
                 title: "",
-                message: "IBAN copiado com sucesso!",
+                message: text,
                 type: "info",
                 insert: "top",
                 container: "top-right",
@@ -126,17 +130,139 @@ export function Dashboard(props: { disableCustomTheme?: boolean }) {
 
         return () => clearInterval(timer); // Limpa o intervalo ao desmontar o componente
     }, []);
-    // TODO mostrar na tela inicial quanto tempo falta para o chá
-    // TODO Incorporar o video para passar o chá ao vivo eplo youtube ou instagram
 
 
     return (
         <AppTheme {...props}>
             <CssBaseline enableColorScheme />
             <Container direction="column" justifyContent="space-between">
-                <Typography variant="h6" align="center" marginBottom={'2rem'}>
+                <Typography variant="h6" align="center" marginBottom={'2rem'} color='gray'>
                     🎉 Agradecemos pelo seu palpite, estamos muito felizes por poder contar com sua participação! 🥰
                 </Typography>
+                <Typography variant="h4" align="center" marginBottom={'2rem'} color=''>
+                    Deixe aqui um mimo para o bêbe, sugestões:
+                </Typography>
+
+                <Box sx={{ flexGrow: 1 }}>
+                    <Grid container spacing={4} width={'100%'}>
+                        <Grid size={{ xs: 12, md: 6 }}>
+                            <Card
+                                variant="outlined"
+                                elevation={3}
+                                sx={{
+                                    width: '100%',
+                                    padding: 3,
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    gap: 2,
+                                    marginBottom: '1rem'
+                                }}
+                            >
+                                <img src={pampersBR} height={200} alt="fralda-pampers" />
+                                <Typography variant="body2">
+                                    Fraldas Descartáveis Pampers 🇧🇷
+                                    <br />
+                                    <strong>R$54,99</strong>
+                                </Typography>
+                            </Card>
+                            <Card
+                                variant="outlined"
+                                elevation={3}
+                                sx={{
+                                    width: '100%',
+                                    padding: 3,
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    gap: 2,
+                                    marginBottom: '1rem'
+                                }}
+                            >
+                                <img src={monicaBR} height={200} alt="fralda-monica" />
+                                <Typography variant="body2">
+                                    Fralda Infantil Turma da Mônica 🇧🇷
+                                    <br />
+                                    <strong>R$47,90</strong>
+                                </Typography>
+                            </Card>
+                        </Grid>
+                        <Grid size={{ xs: 12, md: 6 }}>
+                            <Card
+                                variant="outlined"
+                                elevation={3}
+                                sx={{
+                                    width: '100%',
+                                    padding: 3,
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    gap: 2,
+                                    marginBottom: '1rem'
+                                }}
+                            >
+                                <img src={dodotPT} height={200} alt="fralda-dodot" />
+                                <Typography variant="body2">
+                                    Fraldas Sensitive XXL 2-5kg T1 🇵🇹
+                                    <br />
+                                    <strong>€16,82</strong>
+                                </Typography>
+                            </Card>
+                            <Card
+                                variant="outlined"
+                                elevation={3}
+                                sx={{
+                                    width: '100%',
+                                    padding: 3,
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    gap: 2,
+                                    marginBottom: '1rem'
+                                }}
+                            >
+                                <img src={liberoPT} height={200} alt="fralda-libero" />
+                                <Typography variant="body2">
+                                    Fraldas Newborn 2-5kg 🇵🇹
+                                    <br />
+                                    <strong>€13,79</strong>
+                                </Typography>
+                            </Card>
+                        </Grid>
+                    </Grid>
+                </Box>
+
+                <Card
+                    variant="outlined"
+                    elevation={3}
+                    sx={{
+                        width: '100%',
+                        padding: 3,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: 2,
+                        marginBottom: '1rem'
+                    }}
+                >
+                    <Typography variant="h4" align="center" color=''>
+                        Como eu posso enviar o presente?
+                    </Typography>
+                    <Typography variant="body2" align="left" color='' padding={2}>
+                        <ul>
+                            <li>Pode optar por enviar via pix, para valores em reais.</li>
+                            <li>Pode enviar via wise para valores em euro ou dólar.</li>
+                            <li>Ou se preferir pode fazer um MBway ou transfência para o IBAN.</li>
+                        </ul>
+                        <br />
+                        <strong>MBWay:</strong> +351 915 268 159
+                        <TooltipMaterial title="Copiar">
+                            <IconButton onClick={() => handleCopy("+351 915 268 159", "MBWay copiado com sucesso!")} sx={{ height: '10px', width: '10px', border: 'none' }}>
+                                <ContentCopyIcon sx={{ height: '10px' }} />
+                            </IconButton>
+                        </TooltipMaterial>
+                    </Typography>
+                </Card>
 
                 {/* Seção de QR Codes */}
                 <Box sx={{ flexGrow: 1, display: 'flex', width: '100%' }}>
@@ -225,16 +351,17 @@ export function Dashboard(props: { disableCustomTheme?: boolean }) {
                                     gap: 2,
                                 }}
                             >
-                                <Grid container spacing={4} width={'100%'}>
-                                    <Grid size={{ xs: 2 }} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                        <img src={vote === BOY ? babyBoy : babyGirl} width={50} alt="baby-image" />
-                                    </Grid>
-                                    <Grid size={{ xs: 10 }} sx={{ display: 'flex', alignItems: 'center' }}>
-                                        <Typography variant="body2" color={vote === BOY ? '#82ccdd' : '#f8a5c2'}>
-                                            Seu voto: "{vote}"!
-                                        </Typography>
-                                    </Grid>
-                                </Grid>
+                                <Typography variant="caption">
+                                    <strong>Contribua via Transferência de bancos europeus</strong>
+                                </Typography>
+                                <Typography variant="caption">
+                                    <strong>IBAN:</strong> PT50 0023 0000 45666441142 94
+                                    <TooltipMaterial title="Copiar">
+                                        <IconButton onClick={() => handleCopy("PT50 0023 0000 45666441142 94", "IBAN copiado com sucesso!")} sx={{ height: '10px', width: '10px', border: 'none' }}>
+                                            <ContentCopyIcon sx={{ height: '10px' }} />
+                                        </IconButton>
+                                    </TooltipMaterial>
+                                </Typography>
                             </Card>
                         </Grid>
 
@@ -252,17 +379,16 @@ export function Dashboard(props: { disableCustomTheme?: boolean }) {
                                     gap: 2,
                                 }}
                             >
-                                <Typography variant="caption">
-                                    <strong>Contribua via Transferência de bancos europeus</strong>
-                                </Typography>
-                                <Typography variant="caption">
-                                    <strong>IBAN:</strong> PT50 0023 0000 45666441142 94
-                                    <TooltipMaterial title="Copiar">
-                                        <IconButton onClick={() => handleCopy("PT50 0023 0000 45666441142 94")} sx={{ height: '10px', width: '10px', border: 'none' }}>
-                                            <ContentCopyIcon sx={{ height: '10px' }} />
-                                        </IconButton>
-                                    </TooltipMaterial>
-                                </Typography>
+                                <Grid container spacing={4} width={'100%'}>
+                                    <Grid size={{ xs: 2 }} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                        <img src={vote === BOY ? babyBoy : babyGirl} width={50} alt="baby-image" />
+                                    </Grid>
+                                    <Grid size={{ xs: 10 }} sx={{ display: 'flex', alignItems: 'center' }}>
+                                        <Typography variant="body2" color={vote === BOY ? '#82ccdd' : '#f8a5c2'}>
+                                            Seu voto: "{vote}"!
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
                             </Card>
                         </Grid>
                     </Grid>
