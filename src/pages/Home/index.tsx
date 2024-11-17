@@ -2,7 +2,7 @@ import './styles.scss';
 import babyImage from '../../assets/baby.png';
 import babyGirlImage from '../../assets/baby-girl.png';
 import { useNavigate } from 'react-router-dom';
-import { getVoteData, VoteData } from '../../services/vote';
+import { getVoteDataForHome, VoteData } from '../../services/vote';
 import { useQuery } from "react-query";
 import { useEffect, useState } from 'react';
 import { BOY } from '../../utils/const';
@@ -17,7 +17,7 @@ export function Home() {
 
     const { data: votes, isLoading, error } = useQuery(
         'getVotes',
-        () => getVoteData(), {
+        () => getVoteDataForHome(), {
         onSuccess: (data) => {
             const girls: VoteData[] = []
             const boys: VoteData[] = []
@@ -33,8 +33,6 @@ export function Home() {
             const gPercentage = Math.round(girls.length * 100 / total)
             setBoyPercentege((bPercentage === 0 || isNaN(bPercentage)) ? 50 : bPercentage)
             setGirlPercentege((gPercentage === 0 || isNaN(gPercentage)) ? 50 : gPercentage)
-            // setBoyPercentege(bPercentage)
-            // setGirlPercentege(gPercentage)
         },
         onError: (error) => {
             console.error('Erro ao carregar os dados:', error)

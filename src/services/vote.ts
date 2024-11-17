@@ -1,20 +1,45 @@
 import { collection, doc, DocumentData, DocumentSnapshot, getDocs, getFirestore, query, QuerySnapshot, setDoc, where } from "firebase/firestore";
-import { app } from "./firebase";
+import { app, auth } from "./firebase";
+import { signInAnonymously } from "firebase/auth";
 
 const db = getFirestore(app)
 const colRef = collection(db, "vote");
 
-export interface VoteData { 
+export interface VoteData {
     date: Date;
     gender: string;
     uidUser: string;
+}
+
+export async function getVoteDataForHome() {
+    try {
+        const votes: VoteData[] = []
+        await signInAnonymously(auth).then(async () => {
+            console.log("Usuário autenticado anonimamente.")
+            const querySnapshot = await getDocs(colRef)
+
+            querySnapshot.forEach((doc) => {
+                votes.push({
+                    date: doc.data().date as Date,
+                    gender: doc.data().gender as string,
+                    uidUser: doc.data().uid as string,
+                })
+            })
+        }).catch((error) => {
+            console.error("Erro ao autenticar usuário:", error)
+        })
+
+        return votes
+    } catch (error) {
+        console.error("Error getting documents:", error)
+    }
 }
 
 export async function getVoteData() {
     try {
         const querySnapshot = await getDocs(colRef);
         const votes: VoteData[] = []
-        
+
         querySnapshot.forEach((doc) => {
             votes.push({
                 date: doc.data().date as Date,
