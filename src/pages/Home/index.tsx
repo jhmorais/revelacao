@@ -6,7 +6,7 @@ import { getVoteDataForHome, VoteData } from '../../services/vote';
 import { useQuery } from "react-query";
 import { useEffect, useState } from 'react';
 import { BOY } from '../../utils/const';
-import { Typography } from '@mui/material';
+import { Link, Typography } from '@mui/material';
 import ScreenLoader from '../../components/screenLoader';
 
 export function Home() {
@@ -98,9 +98,14 @@ export function Home() {
             </div>
 
             <div className="center-button">
-                <button className='vote-button' onClick={vote}>Votar Agora</button>
+                {/* <button className='vote-button' onClick={vote}>Votar Agora</button> */}
                 <Typography variant="h3" id="cronometro" sx={{ marginTop: '2rem', color: 'rgba(255, 255, 255, 0.8)', }}>
                     {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
+                </Typography>
+                <Typography variant="h6" id="cronometro" sx={{ marginTop: '2rem', color: 'rgba(255, 255, 255)', }}>
+                    <Link href="https://meet.google.com/sez-nnjd-gto" underline="hover" target="_blank"  color='white'>
+                        Assistir ao chá revelação
+                    </Link>
                 </Typography>
             </div>
             <ScreenLoader open={isLoading} message="Carregando dados, por favor, aguarde..." />
